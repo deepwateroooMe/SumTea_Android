@@ -8,14 +8,13 @@ import com.sum.framework.ext.saveAsUnChecked
 import java.lang.reflect.ParameterizedType
 
 /**
- * @author mingyan.su
- * @date   2023/2/26 11:48
+ * @date   2/17 11:27
  * @desc   dataBinding Activity基类
  */
-abstract class BaseDataBindActivity<DB : ViewBinding> : BaseActivity() {
+abstract class BaseDataBindActivity<DB : ViewBinding> : BaseActivity() { // 【抽象、数据绑定基类】
     lateinit var mBinding: DB
 
-    override fun setContentLayout() {
+    override fun setContentLayout() { // 自动设置【视图绑定】：利用【参数标记的类名】来，反射绑定对应视图
 //      mBinding = DataBindingUtil.setContentView(this, getLayoutResId())
         val type = javaClass.genericSuperclass
         val vbClass: Class<DB> = type!!.saveAs<ParameterizedType>().actualTypeArguments[0].saveAs()
@@ -24,5 +23,5 @@ abstract class BaseDataBindActivity<DB : ViewBinding> : BaseActivity() {
         setContentView(mBinding.root)
     }
 
-    override fun getLayoutResId(): Int = 0
+    override fun getLayoutResId(): Int = 0 // 这个，实体类里，还要再写、改装什么的吗？
 }

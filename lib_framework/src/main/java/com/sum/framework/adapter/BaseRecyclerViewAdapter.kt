@@ -16,7 +16,7 @@ import androidx.viewbinding.ViewBinding
  * @date   2023/3/9 08:13
  * @desc   adapter基类
  * 提供创建ViewHolder能力，提供添加头尾布局能力，dataBinding能力
- */
+ */ // 【最基、最简单、框架化的 RecyclerView 的适配器Adapter】：添加功能有：框架化自动视图绑定
 abstract class BaseRecyclerViewAdapter<T, B : ViewBinding> : RecyclerView.Adapter<BaseViewHolder>() {
     /**
      * 数据列表
@@ -40,7 +40,7 @@ abstract class BaseRecyclerViewAdapter<T, B : ViewBinding> : RecyclerView.Adapte
      * Item长按事件监听
      */
     var onItemLongClickListener: ((view: View, position: Int) -> Boolean) = { view, position -> false }
-
+ // 【TODO】：下面的，改天细看，注释再实现的原因
     /**
      * 子类不可重载，如果有需要请重写[onCreateDefViewHolder]实现自定义ViewHolder
      * 或者重写[getViewBinding]传入布局，不需要创建ViewHolder
@@ -72,7 +72,7 @@ abstract class BaseRecyclerViewAdapter<T, B : ViewBinding> : RecyclerView.Adapte
     }
 
     /**
-     * 子类可以选择重载该方法，如果有需要可重写[onBindDefViewHolder]，点击事件调用super即可
+     * 子类可以选择重载该方法，如果有需要可重写[onBindDefViewHolder]，点击事件调用super即可：
      */
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         when (holder.itemViewType) {
@@ -86,7 +86,7 @@ abstract class BaseRecyclerViewAdapter<T, B : ViewBinding> : RecyclerView.Adapte
                     val realPosition = position - headerLayoutCount
                     val item = getItem(realPosition)
                     item?.let {
-                        onBindDefViewHolder(holder, it, realPosition)
+                        onBindDefViewHolder(holder, it, realPosition) // 是这里、指定：若重载，务必重载 onBindDefViewHolder() 方法？
                     }
                 }
             }
@@ -94,25 +94,25 @@ abstract class BaseRecyclerViewAdapter<T, B : ViewBinding> : RecyclerView.Adapte
     }
 
     /**
-     * 点击绑定点击事件
+     * 点击绑定点击事件: 【绑定点击事件，这里还是——桥】应该是在基类视图中？有提供绑定回调的函数名，与定义体？【TODO】：把这个角落弄懂！！！
      * @param holder
      */
-    protected open fun bindViewClickListener(holder: BaseViewHolder) {
+    protected open fun bindViewClickListener(holder: BaseViewHolder) { // 感觉这里2 个方法，没有看懂
         onItemClickListener?.let {
             holder.itemView.setOnClickListener { v ->
                 var position = holder.adapterPosition
                 if (position == RecyclerView.NO_POSITION) {
-                    return@setOnClickListener
+                    return@setOnClickListener  // <<<<<<<<<<<<<<<<<<<< 很多地方有这个函数的定义，但要真正理解，它是如何搭桥串起来的
                 }
                 position -= headerLayoutCount
-                it.invoke(holder.itemView, position)
+                it.invoke(holder.itemView, position) // 这里没看懂：它是怎么调用的？
             }
         }
         onItemLongClickListener?.let {
             holder.itemView.setOnLongClickListener { v ->
                 var position = holder.adapterPosition
                 if (position == RecyclerView.NO_POSITION) {
-                    return@setOnLongClickListener false
+                    return@setOnLongClickListener false  // <<<<<<<<<<<<<<<<<<<< 很多地方有这个函数的定义，但要真正理解，它是如何搭桥串起来的
                 }
                 position -= headerLayoutCount
                 it.invoke(holder.itemView, position)

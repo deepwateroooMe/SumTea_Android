@@ -6,13 +6,11 @@ import androidx.databinding.BindingAdapter
 import com.sum.glide.setUrl
 import com.sum.glide.setUrlRound
 
-
 /**
  * @author mingyan.su
  * @date   2023/12/15 23:32
  * @desc   BindingAdapter扩展类
  */
-
 /**
  * 1.需要定义成public static ,使用BindingAdapter注解并标记
  * 2.value中的字段根据需要添加，与方法参数一一对应

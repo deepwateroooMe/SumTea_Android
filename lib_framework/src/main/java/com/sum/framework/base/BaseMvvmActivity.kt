@@ -22,8 +22,7 @@ abstract class BaseMvvmActivity<DB : ViewBinding, VM : ViewModel> : BaseDataBind
 
     private fun initViewModel() {
         val argument = (this.javaClass.genericSuperclass as ParameterizedType).actualTypeArguments
-        mViewModel = ViewModelProvider(this).get(argument[1] as Class<VM>)
-
+        mViewModel = ViewModelProvider(this).get(argument[1] as Class<VM>) // ViewModelProvider: 这个底层原理，得去弄懂
         //兼容性优化
 //        val superclass = javaClass.superclass//超类
 //        if (superclass is ParameterizedType) {//参数泛型类型

@@ -9,7 +9,7 @@ package com.sum.network.constant
 /**
  * base_url
  */
-const val BASE_URL = "https://www.wanandroid.com"
+const val BASE_URL = "https://www.wanandroid.com" // 总站
 
 const val KEY_TOKEN = "token"
 const val KEY_COOKIE = "Cookie"

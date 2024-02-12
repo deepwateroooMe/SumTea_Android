@@ -16,7 +16,7 @@ object CookiesManager {
      * @param cookies
      */
     fun saveCookies(cookies: String) {
-        val mmkv = MMKV.defaultMMKV()
+        val mmkv = MMKV.defaultMMKV() // 现在就忘记：它是作什么的了 MMKV ？一个跨进程安全的、版本的 SharedPreference 之类的、基于文件的、跨进程安全读写？
         mmkv.encode(HTTP_COOKIES_INFO, cookies)
     }
 

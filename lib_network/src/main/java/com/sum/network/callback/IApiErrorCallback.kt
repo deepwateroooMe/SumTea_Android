@@ -7,7 +7,7 @@ import com.sum.framework.toast.TipsToast
  * @date   2023/3/1 12:05
  * @desc   接口请求错误回调
  */
-interface IApiErrorCallback {
+interface IApiErrorCallback { // 当出错了：处理，几个提示、提醒日志
     /**
      * 错误回调处理
      */

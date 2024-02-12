@@ -11,7 +11,7 @@ import okhttp3.Response
 /**
  * @author mingyan.su
  * @date   2023/3/27 07:26
- * @desc   Cookies拦截器
+ * @desc   Cookies拦截器: 亲爱的表哥的活宝妹，搞不懂，这些拦截器，为什么要拦截？它说 CookiesManager 管理器，拦截了要记住用户名与密码；可以实现一段时间内，用户免再登录？
  */
 class CookiesInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -28,7 +28,7 @@ class CookiesInterceptor : Interceptor {
         ) {
             val cookies = response.headers(KEY_SET_COOKIE)
             val cookiesStr = CookiesManager.encodeCookie(cookies)
-            CookiesManager.saveCookies(cookiesStr)
+            CookiesManager.saveCookies(cookiesStr) // <<<<<<<<<<<<<<<<<<<< 管理器：记住了！有效时间内、免再登录？
             LogUtil.e("CookiesInterceptor:cookies:$cookies", tag = "smy")
         }
         return response

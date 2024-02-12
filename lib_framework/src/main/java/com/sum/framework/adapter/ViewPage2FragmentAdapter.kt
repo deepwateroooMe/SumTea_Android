@@ -15,7 +15,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 class ViewPage2FragmentAdapter(
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle,
-    var fragments: SparseArray<Fragment>
+    var fragments: SparseArray<Fragment>  // 这里，算是真正用上了 SparseArray
 ) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
     /**class ViewPage2FragmentAdapter(activity: FragmentActivity, var fragments: SparseArray<Fragment>) :
@@ -29,7 +29,7 @@ class ViewPage2FragmentAdapter(
         return fragments.size
     }
 
-    fun setData(fragments: SparseArray<Fragment>) {
+    fun setData(fragments: SparseArray<Fragment>) { // 是初始化的，使用场景里，就有什么地方：创建并缓存了一个 SparseArray<Fragment> 实例，要去找到！【TODO】：
         this.fragments = fragments
     }
 }

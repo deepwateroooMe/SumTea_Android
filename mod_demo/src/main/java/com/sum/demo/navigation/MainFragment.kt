@@ -24,7 +24,9 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val navController = findNavController()
+        val navController = findNavController() // 宿主？碎片，中的缺省方法；其它非宿主碎片中调用，会抛异常
+
+        // 下面的三类：为什么是分 Activity-Fragment-Dialog 类型来跳转的，而不是实例名，要找应用中对应页面，看一下
         binding.tvNavActivity.setOnClickListener {
             //跳转Activity（目的地）
             navController.navigate(R.id.nav_activity)

@@ -7,7 +7,6 @@ import com.sum.common.constant.DEMO_ACTIVITY_NAVIGATION
 import com.sum.demo.R
 import com.sum.demo.databinding.ActivityNavigationBinding
 import com.sum.framework.base.BaseDataBindActivity
-
 /**
  * @author mingyan.su
  * @date   2023/5/12 15:32

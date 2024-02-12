@@ -7,10 +7,9 @@ import androidx.viewbinding.ViewBinding
 import com.sum.framework.ext.saveAs
 import com.sum.framework.ext.saveAsUnChecked
 import java.lang.reflect.ParameterizedType
-
 /**
  * @author mingyan.su
- * @date   2023/2/26 21:41
+ * @date   2023/2/26 27:41
  * @desc   dataBinding Fragment 基类
  */
 abstract class BaseDataBindFragment<DB : ViewBinding> : BaseFragment() {

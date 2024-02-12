@@ -7,7 +7,7 @@ import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 
 /**
- * Activity管理类
+ * Activity管理类: 亲爱的表哥的活宝妹，猜，全局单例！！呵呵呵，多进程跨进程应用，全局单例，说了跟没说一样。。。【每个进程，自己的进程单例？】
  */
 object ActivityManager {
 
@@ -22,7 +22,7 @@ object ActivityManager {
     }
 
     fun top(): Activity? {
-        return tasks.last()
+        return tasks.last() // 弹出栈顶活动
     }
 
     fun finishAllActivity(callback: (() -> Unit)? = null) {
@@ -30,7 +30,7 @@ object ActivityManager {
         while (it.hasNext()) {
             val item = it.next()
             it.remove()
-            item.finish()
+            item.finish() // 每个活动：自动了结
         }
         callback?.invoke()
     }

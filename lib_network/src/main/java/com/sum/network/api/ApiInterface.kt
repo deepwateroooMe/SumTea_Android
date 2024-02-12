@@ -21,7 +21,7 @@ import retrofit2.http.Query
  * @date   2023/2/27 19:07
  * @desc   API接口类
  */
-interface ApiInterface {
+interface ApiInterface { // 定义接口：就是Api, 可供给跨进程，其它模块，拿来直用调用的
     /**
      * 首页轮播图
      */
@@ -57,7 +57,7 @@ interface ApiInterface {
     ): BaseResponse<ProjectSubList>?
 
     /**
-     * 分类列表
+     * 分类列表: 感觉，更像是从【数据库】中去拿数据，去找接口的具体的实现：它的实现，是写在哪里呢？
      */
     @GET("/navi/json")
     suspend fun getCategoryData(): BaseResponse<MutableList<CategoryItem>>?

@@ -10,8 +10,8 @@ import com.sum.framework.helper.SumAppHelper
 import com.tencent.smtt.sdk.WebView
 
 /**
- * 腾讯X5WebView
- */
+ * 腾讯X5WebView: 就是用这个第三方库呀，是库，是来自第三方的。。
+ */ // 这些注释标签，还不懂
 open class BaseWebView @JvmOverloads constructor(
     context: Context, attr: AttributeSet? = null
 ) : WebView(context, attr) {
@@ -34,9 +34,9 @@ open class BaseWebView @JvmOverloads constructor(
         }
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
+    @SuppressLint("SetJavaScriptEnabled") // 所以，下面会引用第三方库里的类，什么的、微信。。 com.tencent.smtt.....
     private fun initSetting() {
-        overScrollMode = View.OVER_SCROLL_ALWAYS
+        overScrollMode = View.OVER_SCROLL_ALWAYS // 就是，可以翻屏，如手指触屏、翻屏页面内容 
         settings.apply {
             defaultTextEncodingName = "utf-8"
             javaScriptEnabled = true
@@ -46,12 +46,12 @@ open class BaseWebView @JvmOverloads constructor(
             loadWithOverviewMode = true
             layoutAlgorithm = com.tencent.smtt.sdk.WebSettings.LayoutAlgorithm.NARROW_COLUMNS
             //无限放大
-            setSupportZoom(false)
+            setSupportZoom(false) // 这个，感觉是，否绝放大，不能放大缩小！！细节不用管。。。
             builtInZoomControls = false
 
             setAppCacheEnabled(true)
             setGeolocationEnabled(true)
-            setAppCacheMaxSize(Long.MAX_VALUE)
+            setAppCacheMaxSize(Long.MAX_VALUE) // 应用，最大缓存内存， for WebView
             domStorageEnabled = true
             cacheMode = WebSettings.LOAD_DEFAULT
 //            mixedContentMode = com.tencent.smtt.sdk.WebSettings.LOAD_NORMAL

@@ -19,10 +19,9 @@ object TipsToast {
     private var toast: Toast? = null
 
     private lateinit var mContext: Application
-
     private val mToastHandler = Looper.myLooper()?.let { Handler(it) }
 
-    private val mBinding by lazy {
+    private val mBinding by lazy { // 这个是，【自动视力绑定、底层库的一个应用，去把底层设计实现原理弄明白】
         WidgetTipsToastBinding.inflate(LayoutInflater.from(mContext), null, false)
     }
 

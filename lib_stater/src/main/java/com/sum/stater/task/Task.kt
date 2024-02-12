@@ -34,7 +34,7 @@ abstract class Task : ITask {
     var isSend = false
 
     // 当前Task依赖的Task数量（需要等待被依赖的Task执行完毕才能执行自己），默认没有依赖
-    private val mDepends = CountDownLatch(
+    private val mDepends = CountDownLatch( // 用了个【计数器型、任务所依赖的、父任务计数】
         dependsOn()?.size ?: 0
     )
 

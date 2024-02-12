@@ -15,7 +15,7 @@ import com.sum.framework.base.BaseDataBindActivity
 class DemoLifecycleActivity : BaseDataBindActivity<ActivityLifecycleBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         //第一种.注册观察者，观察宿主生命周期状态变化
-        val observer = MyLifecycleObserver()
+        val observer = MyLifecycleObserver() // 这些方法，是哪里定义的？全在这同一目录下的另一个文件中
         lifecycle.addObserver(observer)
 
         //第二种

@@ -13,6 +13,7 @@ import com.sum.network.viewmodel.BaseViewModel
  * @desc   分类ViewModel
  */
 class CategoryViewModel : BaseViewModel() {
+     // 这里，不是把它们直接串起来了吗？异步网络调用的结果，直接写在这个实时可变数据里？
     val categoryItemLiveData = MutableLiveData<MutableList<CategoryItem>?>()
 
     /**
@@ -21,14 +22,14 @@ class CategoryViewModel : BaseViewModel() {
      */
     fun getCategoryData() {
         launchUIWithResult(responseBlock = {
-            ApiManager.api.getCategoryData()
-        }, errorCall = object : IApiErrorCallback {
-            override fun onError(code: Int?, error: String?) {
-                super.onError(code, error)
-                TipsToast.showTips(error)
-                categoryItemLiveData.value = null
-            }
-        }) {
+                               ApiManager.api.getCategoryData() // <<<<<<<<<<<<<<<<<<<< 去找：这个方法的实现细节【TODO】：
+                           }, errorCall = object : IApiErrorCallback {
+                                  override fun onError(code: Int?, error: String?) {
+                                      super.onError(code, error)
+                                      TipsToast.showTips(error)
+                                      categoryItemLiveData.value = null  // 跨进程？拿数据出错，把这个实时数据置空。再去看【跨进程？拿数据】？弄懂
+                                  }
+                              }) {
             categoryItemLiveData.value = it
         }
     }

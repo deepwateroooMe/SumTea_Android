@@ -10,5 +10,5 @@ import androidx.viewbinding.ViewBinding
  * @desc   基本ViewHolder
  */
 open class BaseViewHolder(rootView: View) : RecyclerView.ViewHolder(rootView)
-
+ // 带自动【视图绑定】的
 open class BaseBindViewHolder<B : ViewBinding>(val binding: B) : BaseViewHolder(binding.root)

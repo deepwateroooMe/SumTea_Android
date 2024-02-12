@@ -12,13 +12,12 @@ import com.sum.framework.R
 import com.sum.framework.log.LogUtil
 import com.sum.framework.utils.LoadingUtils
 import com.sum.framework.toast.TipsToast
-
 /**
  * @author mingyan.su
  * @date   2023/2/20 12:34
  * @desc Fragment基类
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : Fragment() { // 【碎片基类】：关于 fragment 的基本操作、缓存什么的【Fragment 缓存，没在这个类里】？
     protected var TAG: String? = this::class.java.simpleName
 
     protected var mIsViewCreate = false
@@ -32,7 +31,6 @@ abstract class BaseFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         return getContentView(inflater, container)
     }
 
@@ -42,10 +40,10 @@ abstract class BaseFragment : Fragment() {
         initView(view, savedInstanceState)
         initData()
     }
-
+//setUserVisibleHint: 回调用过，原理没弄透彻。【TODO】：这个回头，再回来看一下
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-        //手动切换首页tab时，先调用此方法设置fragment的可见性
+        //手动切换首页tab时，先调用此方法设置fragment的可见性：这个的必要性，原因是？
         if (mIsViewCreate) {
             onFragmentVisible(isVisibleToUser)
         }
@@ -64,8 +62,8 @@ abstract class BaseFragment : Fragment() {
             onFragmentVisible(false)
         }
     }
-
-    open fun onFragmentVisible(isVisibleToUser: Boolean) {
+// 感觉，可能就是，在某些笨安卓、多控件协作不好，如ViewPager 与Tablayout,需要主程人工程序调控时，添加这类主程协调它们工作的回调之类的
+    open fun onFragmentVisible(isVisibleToUser: Boolean) { // 仅只打了个没用的日志，应该至少分享一个真正实用的用例
         LogUtil.w("onFragmentVisible-${TAG}-isVisibleToUser:$isVisibleToUser")
     }
 

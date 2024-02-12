@@ -43,7 +43,7 @@ class InitMmkvTask() : Task() {
         return true
     }
 
-    //依赖某些任务，在某些任务完成后才能执行
+    //依赖某些任务，在某些任务完成后才能执行: 【TODO】：【这个看不懂，要找使用的场景、例子来看】
     override fun dependsOn(): MutableList<Class<out Task>> {
         val tasks = mutableListOf<Class<out Task?>>()
         tasks.add(InitSumHelperTask::class.java)
@@ -91,7 +91,8 @@ class InitAppManagerTask() : Task() {
 }
 
 /**
- * 全局初始化SmartRefreshLayout
+ * 全局初始化SmartRefreshLayout:
+  // 【TODO】：不明白，这个功能，是干什么用的？字面的意思是说，更聪明的刷新 layout, 应该是一个有所优化的、带某类缓存功能的 layout 使用？找出来
  */
 class InitRefreshLayoutTask() : Task() {
     //异步线程执行的Task在被调用await的时候等待

@@ -7,13 +7,12 @@ import com.sum.framework.R
 import com.sum.framework.utils.LoadingUtils
 import com.sum.framework.toast.TipsToast
 
-
 /**
  * Author mingyan.su
  * Time   2023/2/20 12:33
  * Desc   Activity基类
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() { // 【定框架】：在最基类里，把必要的视图绑定、数据绑定，链接好
     protected var TAG: String? = this::class.java.simpleName
 
     private val dialogUtils by lazy {
@@ -23,17 +22,17 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentLayout()
-        initView(savedInstanceState)
-        initData()
+        initView(savedInstanceState) // <<<<<<<<<<<<<<<<<<<< 
+        initData()                   // <<<<<<<<<<<<<<<<<<<< 
     }
 
     /**
      * 设置布局
      */
     open fun setContentLayout() {
-        setContentView(getLayoutResId())
+        setContentView(getLayoutResId()) // 自动获取视图 id 
     }
-
+ // 【抽象接口】：供子类去实现
     /**
      * 初始化视图
      * @return Int 布局id
@@ -51,7 +50,6 @@ abstract class BaseActivity : AppCompatActivity() {
      * 初始化数据
      */
     open fun initData() {
-
     }
 
     /**
