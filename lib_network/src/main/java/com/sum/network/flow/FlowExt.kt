@@ -56,18 +56,18 @@ suspend fun <T> requestFlowResponse(
     //1.执行请求
     val flow = flow {
         //设置超时时间
-        val response = withTimeout(10 * 1000) {
+        val response = withTimeout(10 * 1000) { // Flow<> 请求返回的结果
             requestCall()
         }
 
-        if (response?.isFailed() == true) {
+        if (response?.isFailed() == true) { // 结果：如果出错了
             throw ApiException(response.errorCode, response.errorMsg)
         }
         //2.发送网络请求结果回调
-        emit(response)
+        emit(response) // 结果正常
         //3.指定运行的线程，flow {}执行的线程
-    }.flowOn(Dispatchers.IO)
-            .onStart {
+    }.flowOn(Dispatchers.IO) // 开启专用的IO 线程，来作网络请求调用
+            .onStart { // 开始回调：一开始网络请求，就显示加载进度
                 //4.请求开始，展示加载框
                 showLoading?.invoke(true)
             }
@@ -79,7 +79,7 @@ suspend fun <T> requestFlowResponse(
                 errorBlock?.invoke(exception.errCode, exception.errMsg)
             }
             //6.请求完成，包括成功和失败
-            .onCompletion {
+            .onCompletion { // 完成回调：
                 showLoading?.invoke(false)
             }
     return flow

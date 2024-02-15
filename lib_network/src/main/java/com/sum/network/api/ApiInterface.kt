@@ -16,7 +16,7 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-/**
+/** 这个大项目，跨进程相关的部分，大的轮括，要自己梳理明白 
  * @author mingyan.su
  * @date   2023/2/27 19:07
  * @desc   API接口类

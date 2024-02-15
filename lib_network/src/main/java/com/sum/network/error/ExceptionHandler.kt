@@ -9,7 +9,7 @@ import retrofit2.HttpException
 import java.net.ConnectException
 
 /**
- * 统一错误处理工具类
+ * 统一错误处理工具类: 统一异常处理类
  */
 object ExceptionHandler {
 
@@ -24,7 +24,7 @@ object ExceptionHandler {
         } else if (e is NoNetWorkException) {
             TipsToast.showTips("网络异常，请尝试刷新")
             ex = ApiException(ERROR.NETWORD_ERROR, e)
-        } else if (e is HttpException) {
+        } else if (e is HttpException) { // 把所有的 HttpException 重新包装成，自定义底层的 ApiException
             ex = when (e.code()) {
                 ERROR.UNAUTHORIZED.code -> ApiException(ERROR.UNAUTHORIZED, e)
                 ERROR.FORBIDDEN.code -> ApiException(ERROR.FORBIDDEN, e)

@@ -3,7 +3,7 @@ package com.sum.network.error
 import java.io.IOException
 
 /**
- * 结果异常类: 延伸了一下，是一层包装。包装了，就可以底层拿来直用！
+ * 结果异常类: 延伸了一下，是一层极简包装
  * 服务器非200状态，对应的异常
  */
 open class ApiException : Exception {
